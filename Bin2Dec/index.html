@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bin2Dec</title>
+</head>
+<body>
+    <h1>Binary to Decimal Converter</h1>
+    <div id="Bin2Dec">
+        <input type="text" placeholder="Enter 0 or 1" class="input">
+        <button class="button">Convert</button>
+        <div class="output"></div>
+    </div>
+    <style>
+        
+        #Bin2Dec {
+            width: 360px;
+            height: 100px;
+            background-color:#a3a3a3;
+            border: solid 1px black;
+            border-radius: 10px;
+        }
+        #Bin2Dec .input {
+            width: 200px;
+            height: 30px;
+            margin: 15px;
+            border: 1px solid black;
+            border-radius: 6px;
+            outline: none;
+        }
+        #Bin2Dec button {
+            width: 80px;
+            height: 30px;
+            border: 1px solid black;
+            border-radius: 6px;
+            margin: 15px;
+            margin-left: 0;
+        }
+        .output {
+            margin: 15px;
+            margin-top: 0;
+        }
+    </style>
+
+    <script>
+        function Bin2Dec(params) {
+            let arr = params.split('');
+            let sum = 0;
+            for(let i = arr.length - 1; i >= 0; i--){
+                sum += parseInt(arr[i]) * Math.pow(2,arr.length - i - 1)
+            }
+            return sum
+        }
+        let regEXP = /^[01]{1,8}$/
+        let input = document.querySelector('.input')
+        let button = document.querySelector('.button')
+        button.addEventListener('click', ()=>{
+            let output = document.querySelector('.output')
+            if(regEXP.test(input.value)){
+                output.innerHTML = Bin2Dec(input.value)
+            }else {
+                output.innerHTML = 'Input Error'
+                output.style.color = 'red'
+            }
+        })
+    </script>
+</body>
+</html>
